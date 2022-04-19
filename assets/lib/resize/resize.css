@@ -1,0 +1,21 @@
+.resizeable {
+    display: flex;
+}
+
+.resizeable:last-child, .resizeable:first-child {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.resizer {
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.resizer-v {
+    width: 2px;
+    cursor: ew-resize;
+}
+.resizer-h {
+    height: 2px;
+    cursor: ns-resize;
+}
