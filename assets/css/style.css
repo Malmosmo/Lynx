@@ -1,0 +1,44 @@
+/* https://coolors.co/293241 */
+:root {
+    --bg-0: #293241;
+    --bg-1: #344054;
+    --bg-2: #3F4D65;
+    --bg-3: #4A5B77;
+    --bg-4: #566889;
+}
+
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+
+/*
+Editor
+*/
+
+.editor-panel {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+}
+
+.editor, .viewport {
+    width: calc(50% - 1px);
+}
+
+.viewport {
+    background-color: var(--bg-2);
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    background-color: var(--bg-4);
+}
