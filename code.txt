@@ -105,7 +105,7 @@ float map(in vec3 pos) {
     float d = 1e10;
     vec3 q = rotY(iFrame*0.001) *rotX(iFrame*0.001) * pos;
     // q.y -= iFrame / 1000.0;
-    float d1 = sdRoundBox(q,vec3(1.8), 0.1 ) + 0.1 * cumNoise(0.1 * q.xy) + 0.1 * cumNoise(10.0 + 0.1*q.zy)+ 0.1 * cumNoise(10.0 + 0.1*q.xz);
+    float d1 = sdRoundBox(q,vec3(1.8), 0.1 );
     //d1 += 0.1 * (2.0 * rand(0.0001 * q.xy) - 1.0);
     return min(d, d1);
 }

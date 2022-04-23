@@ -1,0 +1,15 @@
+.dropdown-toggle {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.dropdown-menu {
+    border-radius: 0;
+    border: 0;
+
+    font-size: inherit;
+}

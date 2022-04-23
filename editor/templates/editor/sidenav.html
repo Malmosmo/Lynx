@@ -1,0 +1,18 @@
+<div class="d-flex h-100">
+    <ul class="side-menu">
+        <li id="explorer">
+            <i class="bi bi-file-earmark"></i>
+        </li>
+    </ul>
+    <ul class="context-menu">
+        <li id="x" class="d-none">Hello</li>
+        <li class="d-none">Hello</li>
+        <li class="d-none">Hello</li>
+    </ul>
+</div>
+
+<script>
+    document.getElementById("explorer").addEventListener("click", () => {
+        document.getElementById("x").classList.toggle("d-none");
+    });
+</script>

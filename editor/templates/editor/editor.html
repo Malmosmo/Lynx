@@ -1,20 +1,15 @@
-{% extends 'main.html' %} {% block content %}
-
-<div class="editor-panel resizeable">
+<div class="code-panel">
     <div class="editor">
         <textarea name="code" id="code">{{ code }}</textarea>
     </div>
 
-    <div class="resizer"></div>
+    <div class="resizer resize-v"></div>
 
     <div class="viewport">
         <canvas id="gl-view" width="640" height="480"></canvas>
-        <div id="info">
-        </div>
+        <div id="info"></div>
         <button id="save" url="{% url 'editor-save' %}">
             <i class="bi bi-box-arrow-in-down"></i>
         </button>
     </div>
 </div>
-
-{% endblock %}

@@ -12,7 +12,7 @@ def editor(request):
     with open(settings.BASE_DIR / "code.txt", "r") as file:
         code = file.read()
 
-    return render(request, template_name="editor/editor.html", context={"code": code})
+    return render(request, template_name="editor/layout.html", context={"code": code})
 
 
 @csrf_exempt

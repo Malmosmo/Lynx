@@ -1,0 +1,13 @@
+{% extends 'main.html' %} {% block content %}
+
+<div class="site">
+    <div class="top-nav">{% include 'editor/topnav.html'%}</div>
+
+    <div class="editor-panel">
+        <div class="side-nav">{% include 'editor/sidenav.html'%}</div>
+
+        {% include 'editor/editor.html'%}
+    </div>
+</div>
+
+{% endblock %}
