@@ -10,6 +10,29 @@
     --top-nav-height: 30px;
 }
 
+/*
+General Purpose
+*/
+
+ul.ul-list {
+    display: flex;
+    
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.link {
+    cursor: pointer;
+}
+
+canvas {
+    display: flex;
+    
+    width: 850px;
+    height: 480px;
+}
 
 /*
 Layout.html
@@ -24,7 +47,8 @@ Layout.html
 }
 
 .top-nav {
-    background-color: rgba(210, 210, 83, 0.465);
+    background-color: var(--bg-1);
+    color: white;
 
     display: flex;
     align-items: center;
@@ -55,7 +79,7 @@ topnav.html
 }
 
 .logo > i {
-    color: blueviolet;
+    color: var(--bg-4);
 }
 
 
@@ -71,7 +95,7 @@ ul.top-menu {
 }
 
 ul.top-menu > li {
-    padding: 0 0.5rem;
+    padding: 0.5rem 0.5rem;
 }
 
 /*
@@ -79,7 +103,7 @@ sidenav.html
 */
 
 ul.side-menu {
-    background-color: #566889;
+    background-color: var(--bg-1);
 
     display: flex;
     flex-direction: column;
@@ -102,6 +126,13 @@ ul.context-menu {
     padding: 0;
 
     list-style: none;
+}
+
+.ctx-menu-entry {
+    background-color: var(--bg-2);
+    color: white;
+
+    padding: 0.5rem;
 }
 
 /*
@@ -128,5 +159,11 @@ editor.html
 }
 
 .viewport {
-    background-color: rgba(210, 83, 83, 0.465);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-0);
+
+    align-items: center;
+
+    padding: 1rem;
 }

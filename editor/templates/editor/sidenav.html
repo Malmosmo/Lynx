@@ -5,7 +5,13 @@
         </li>
     </ul>
     <ul class="context-menu">
-        <li id="x" class="d-none">Hello</li>
+        <li id="file-menu" class="d-none ctx-menu-entry">
+            <ul class="ul-list flex-column">
+                {% for file in files %}
+                <li class="link" url="{% url 'api-get' %}" path="{{ file }}" onclick="loadFile(this)">{{ file }}</li>
+                {% endfor %}
+            </ul>
+        </li>
         <li class="d-none">Hello</li>
         <li class="d-none">Hello</li>
     </ul>
@@ -13,6 +19,72 @@
 
 <script>
     document.getElementById("explorer").addEventListener("click", () => {
-        document.getElementById("x").classList.toggle("d-none");
+        document.getElementById("file-menu").classList.toggle("d-none");
     });
+
+    function loadFile(element) {
+        let url = element.getAttribute("url");
+        let path = element.getAttribute("path");
+
+        if (path in FileManager) {
+            setEditorValue(path);
+
+            return;
+        }
+
+        console.log("load ", path);
+
+        fetch(
+            url +
+                "?" +
+                new URLSearchParams({
+                    path: element.getAttribute("path"),
+                })
+        )
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                FileManager[json.path] = json;
+
+                setEditorValue(json.path);
+            });
+    }
+
+    function setEditorValue(path) {
+        let currentSource = editor.getValue();
+
+        if (FileManager.active != null) {
+            FileManager[FileManager.active].file = currentSource;
+        }
+
+        let newSrc = FileManager[path].file;
+        FileManager.active = path;
+        editor.setValue(newSrc);
+    }
+
+    function saveToServer(path) {
+        let content = FileManager[path].file;
+
+        let data = {
+            path: path,
+            code: content,
+        };
+
+        console.log("sending", data);
+
+        fetch(API_FILE_SAVE_URL, {
+            method: "POST",
+            body: JSON.stringify(data),
+        }).then((response) => {
+            RES = response;
+            // return response.json();
+        });
+    }
+
+    function saveCurrentFile() {
+        if (FileManager.active != null) {
+            saveToServer(FileManager.active);
+        }
+    }
 </script>

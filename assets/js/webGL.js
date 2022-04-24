@@ -28,11 +28,7 @@ uniform vec2 iResolution;
 
 // code here
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
-    // Normalized pixel coordinates (from 0 to 1)
-    vec2 uv = fragCoord/iResolution.xy;
-
-    // Time varying pixel color
-    vec3 col = 0.5 + 0.5*cos(iFrame/ 100.0 + uv.xyx+vec3(0,2,4));
+    vec3 col = vec3(0.0);
 
     // Output to screen
     fragColor = vec4(col,1.0);
@@ -66,6 +62,10 @@ function render() {
         window.requestAnimationFrame(render, canvas);
     }
 
+    resize(gl.canvas);
+
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
@@ -83,7 +83,10 @@ function render() {
 
     gl.uniform2fv(
         gl.getUniformLocation(program, "iResolution"),
-        [640.0, 480.0]
+        [
+            gl.canvas.width,
+            gl.canvas.height,
+        ]
     );
 
     document.getElementById("info").innerText = iFrame
@@ -133,7 +136,7 @@ function main() {
         }
     `
 
-    var fragmentShaderSource = editor.getValue()
+    var fragmentShaderSource = shaderTemplate;
 
     program = gl.createProgram();
 
@@ -171,6 +174,17 @@ function reloadFragmentShader() {
     }
 
     fragmentShader = shader;
+}
+
+function resize(canvas) {
+    let displayWidth = canvas.clientWidth;
+    let displayHeight = canvas.clientHeight;
+
+    if (canvas.width !== displayWidth || canvas.height !== displayHeight) {
+        canvas.width = displayWidth;
+        canvas.height = displayHeight;
+        aspectRatio = displayWidth / displayHeight;
+    }
 }
 
 window.onload = main

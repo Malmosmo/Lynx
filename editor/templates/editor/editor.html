@@ -6,10 +6,10 @@
     <div class="resizer resize-v"></div>
 
     <div class="viewport">
-        <canvas id="gl-view" width="640" height="480"></canvas>
+        <canvas id="gl-view"></canvas>
         <div id="info"></div>
-        <button id="save" url="{% url 'editor-save' %}">
-            <i class="bi bi-box-arrow-in-down"></i>
+        <button id="play" onclick="reloadFragmentShader()">
+            <i class="bi bi-play"></i>
         </button>
     </div>
 </div>

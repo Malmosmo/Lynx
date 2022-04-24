@@ -1,8 +1,7 @@
 from django.urls import path
 
-from editor.views import editor, save
+from editor.views import editor
 
 urlpatterns = [
     path('', editor, name="editor"),
-    path('save/', save, name="editor-save"),
 ]
